@@ -51,6 +51,8 @@ class GetTimeAgo {
     DateTime dateTime, {
     String? locale,
     String? pattern,
+    // FIXED: 고침
+    DateTime? now,
   }) {
     // Get the locale, if not provided, fallback to the default locale.
     final selectedLocale = locale ?? _defaultLocale;
@@ -59,11 +61,10 @@ class GetTimeAgo {
     final message = _messageMap[selectedLocale] ?? Data.defaultMessages;
 
     // Format the dateTime using the provided pattern or the default pattern.
-    final formattedDate =
-        DateFormat(pattern ?? "dd MMM, yyyy hh:mm aa").format(dateTime);
+    final formattedDate = DateFormat(pattern ?? "dd MMM, yyyy hh:mm aa").format(dateTime);
 
     // Get the current time for comparison.
-    final currentClock = DateTime.now();
+    final currentClock = now ?? DateTime.now();
 
     // Calculate the time difference between now and the provided dateTime.
     final elapsed = currentClock.difference(dateTime).abs();
