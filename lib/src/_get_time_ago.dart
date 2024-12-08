@@ -141,7 +141,13 @@ class GetTimeAgo {
       );
     } else {
       // If the time difference is greater than 7 days, display the formatted date.
-      result = formattedDate;
+      // result = formattedDate;
+      result = formatMessage(
+        prefix,
+        message.daysAgo(elapsed.inDays),
+        suffix,
+        message,
+      );
     }
 
     return result;
